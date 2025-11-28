@@ -76,6 +76,11 @@ std::unique_ptr<AstValueNode> Parser::ParseExpression(const Tokens &tokens)
     return std::move(nodes.top());
 }
 
+void Parser::DisplayTree(std::ostream& os, const AstValueNode &tree)
+{
+    tree.DisplayTree(os, 0, 0);
+}
+
 Tokens Parser::ParseExpressionToOnp(const Tokens &tokens)
 {
     Tokens outTokens;

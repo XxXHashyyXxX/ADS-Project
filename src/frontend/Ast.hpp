@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <variant>
+#include <ostream>
 
 class AstNode {
 public:
@@ -14,6 +15,8 @@ public:
 
     virtual int GetIntValue() = 0;
     virtual double GetDoubleValue() = 0;
+
+    virtual void DisplayTree(std::ostream& os, unsigned spaces, unsigned back = 0) const = 0;
 };
 
 class AstLiteralValueNode : public AstValueNode {
@@ -24,6 +27,7 @@ public:
 
     int GetIntValue() override;
     double GetDoubleValue() override;
+    void DisplayTree(std::ostream& os, unsigned spaces, unsigned back = 0) const override;
 
 private:
     std::variant<int, double> value;
@@ -41,6 +45,7 @@ public:
 
     int GetIntValue() override;
     double GetDoubleValue() override;
+    void DisplayTree(std::ostream& os, unsigned spaces, unsigned back = 0) const override;
 
 private:
     Type type;
@@ -59,6 +64,7 @@ public:
 
     int GetIntValue() override;
     double GetDoubleValue() override;
+    void DisplayTree(std::ostream& os, unsigned spaces, unsigned back = 0) const override;
 
 private:
     Type type;
